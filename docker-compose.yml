@@ -1,0 +1,19 @@
+version: '3.9'
+
+services:
+  mysql:
+    image: mysql:8.0  # Utilisation de l'image MySQL 8.0
+    container_name: mysql_container
+    ports:
+      - "33006:3306"  # Port externe 33006 mappé au port interne 3306
+    environment:
+      MYSQL_ROOT_PASSWORD: fsts@2025  # Configuration du mot de passe root
+      MYSQL_DATABASE: app_data      # Optionnel : Crée une base de données par défaut
+    volumes:
+      - ./mysql_data:/var/lib/mysql  # Stockage persistant des données MySQL
+    networks:
+      - mysql_network
+
+networks:
+  mysql_network:
+    driver: bridge
