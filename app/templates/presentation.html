@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <title>Presentation Page</title>
+    <style>
+        body {
+            background-image: url('../static/backgrownd.jpg');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            font-family: Arial, sans-serif;
+        }
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px;
+        }
+        .header img {
+            width: 100px; /* Adjust size as needed */
+        }
+        .welcome-text {
+            color: gold; /* Set text color to gold */
+            font-size: 24px; /* Adjust font size as needed */
+            text-align: center;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <img src="{{ url_for('static', filename='fsts.png') }}" alt="Left Image">
+        <img src="{{ url_for('static', filename='uh1.png') }}" alt="Right Image">
+    </div>
+    <h1 class="welcome-text">Welcome to the platform of FSTS TPs</h1>
+</body>
+</html>
