@@ -2,15 +2,32 @@ version: '3.9'
 
 services:
   mysql:
-    image: mysql:8.0  # Utilisation de l'image MySQL 8.0
+    image: mysql:8.0
     container_name: mysql_container
     ports:
-      - "33006:3306"  # Port externe 33006 mappé au port interne 3306
+      - "33006:3306"
     environment:
-      MYSQL_ROOT_PASSWORD: fsts@2025  # Configuration du mot de passe root
-      MYSQL_DATABASE: app_data      # Optionnel : Crée une base de données par défaut
+      MYSQL_ROOT_PASSWORD: fsts@2025
+      MYSQL_DATABASE: app_data
     volumes:
-      - ./mysql_data:/var/lib/mysql  # Stockage persistant des données MySQL
+      - ./mysql_data:/var/lib/mysql
+    networks:
+      - mysql_network
+
+  flask_app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: flask_app_container
+    ports:
+      - "5001:5001"
+    environment:
+      MYSQL_HOST: mysql
+      MYSQL_USER: root
+      MYSQL_PASSWORD: fsts@2025
+      MYSQL_DATABASE: app_data
+    depends_on:
+      - mysql
     networks:
       - mysql_network
 
